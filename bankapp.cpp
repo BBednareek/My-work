@@ -26,15 +26,15 @@ class konto_info
 void konto_info::read_data()
 {
     cout << "Podaj numer konta: ";  cin >> numer_konta;
-    cout << "Podaj imiê: ";         cin >> imie;
+    cout << "Podaj imiÃª: ";         cin >> imie;
     cout << "Podaj nazwisko: ";     cin >> nazwisko;
     cout << "Podaj stan konta: ";   cin >> saldo;
 }
 
 void konto_info::show_data()
 {
-    cout << "Numer konta: "        << saldo << endl;
-    cout << "Imiê: "               << imie << endl;
+    cout << "Numer konta: "        << numer_konta << endl;
+    cout << "ImiÃª: "               << imie << endl;
     cout << "Nazwisko: "           << nazwisko << endl;
     cout << "Stan konta:   "       << saldo << endl;
     cout << "--------------------------------" << endl;
@@ -74,8 +74,8 @@ void konto_info::search_reg()
     plik_in.seekg(0, ios::end);
     ilosc_wpisow = plik_in.tellg()/sizeof(*this);
 
-    cout << endl << "Jest " << ilosc_wpisow << " wpisów w pliku" << endl;
-    cout << "Podaj numer wpisu, który chcesz wyszukaæ: "; cin >> nr_wpisu;
+    cout << endl << "Jest " << ilosc_wpisow << " wpisÃ³w w pliku" << endl;
+    cout << "Podaj numer wpisu, ktÃ³ry chcesz wyszukaÃ¦: "; cin >> nr_wpisu;
 
     plik_in.seekg((nr_wpisu-1)*sizeof(*this));
     plik_in.read(reinterpret_cast<char*>(this),sizeof(*this));
@@ -92,8 +92,8 @@ void konto_info::edit_reg()
     plik_io.seekg(0, ios::end);
     ilosc_wpisow = plik_io.tellg()/sizeof(*this);
 
-    cout << endl << "Jest " << ilosc_wpisow << " wpisów w pliku" << endl;
-    cout << endl << "Podaj numer wpisu, który chcesz wyszukaæ: "; cin >> nr_wpisu;
+    cout << endl << "Jest " << ilosc_wpisow << " wpisÃ³w w pliku" << endl;
+    cout << endl << "Podaj numer wpisu, ktÃ³ry chcesz wyszukaÃ¦: "; cin >> nr_wpisu;
 
     plik_io.seekg((nr_wpisu-1)*sizeof(*this));
     plik_io.read(reinterpret_cast<char*>(this), sizeof(*this));
@@ -101,7 +101,7 @@ void konto_info::edit_reg()
     plik_io.close();
     plik_io.open("info.bank", ios::in|ios::out|ios::binary);
 
-    cout << endl << "Podaj wpis, który chcesz zmodyfikowaæ: "; cin >> nr_wpisu;
+    cout << endl << "Podaj wpis, ktÃ³ry chcesz zmodyfikowaÃ¦: "; cin >> nr_wpisu;
     read_data();
     plik_io.write(reinterpret_cast<char*>(this),sizeof(*this));
 }
@@ -116,8 +116,8 @@ void konto_info::del_reg()
     plik_in.seekg(0, ios::end);
     ilosc_wpisow = plik_in.tellg()/sizeof(*this);
 
-    cout << endl << "Jest " << ilosc_wpisow << " wpisów w pliku" << endl;
-    cout << "Podaj numer wpisu, który chcesz usun¹æ: "; cin >> nr_wpisu;
+    cout << endl << "Jest " << ilosc_wpisow << " wpisÃ³w w pliku" << endl;
+    cout << "Podaj numer wpisu, ktÃ³ry chcesz usunÂ¹Ã¦: "; cin >> nr_wpisu;
 
     tempfile.open("tempfile.bank", ios::out|ios::binary);
     plik_in.seekg(0);
@@ -144,14 +144,14 @@ int main()
     cout << "***Informacje o koncie***" << endl;
 
     while(true){
-        cout << "Wybierz jedn¹ z opcji poni¿ej";
+        cout << "Wybierz jednÂ¹ z opcji poniÂ¿ej";
         cout << "\n\t1-->Dodaj nowe konto";
-        cout << "\n\t2-->Poka¿ wszystkie konta";
+        cout << "\n\t2-->PokaÂ¿ wszystkie konta";
         cout << "\n\t3-->Szukaj informacji";
-        cout << "\n\t4-->Zmieñ informacjê";
-        cout << "\n\t5-->Usuñ informacjê";
-        cout << "\n\t6-->Wyjœcie";
-        cout << "\nTwój wybór:"; cin >> wybor;
+        cout << "\n\t4-->ZmieÃ± informacjÃª";
+        cout << "\n\t5-->UsuÃ± informacjÃª";
+        cout << "\n\t6-->WyjÅ“cie";
+        cout << "\nTwÃ³j wybÃ³r:"; cin >> wybor;
     
         switch(wybor)
         {
@@ -161,7 +161,7 @@ int main()
             case 4: info.edit_reg();  	break;
             case 5: info.del_reg();   	break;
             case 6:     exit(0);      	break;
-            default:    cout<"\nPodaj prawid³ow¹ opcjê";
+            default:    cout<"\nPodaj prawidÂ³owÂ¹ opcjÃª";
         }
     }
     system("pause");
